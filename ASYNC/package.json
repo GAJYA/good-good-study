@@ -1,0 +1,9 @@
+{
+    "scripts": {
+        "dev": "webpack --mode development",
+        "start": "webpack-dev-server --mode development"
+    },
+    "dependencies": {
+        "html-webpack-plugin": "^5.3.1"
+    }
+}

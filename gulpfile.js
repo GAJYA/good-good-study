@@ -5,7 +5,8 @@ const del = require('del')
 const loadPlugins = require('gulp-load-plugins')
 const plugins = loadPlugins()
 
-const bs = require('browser-sync')
+const browserSync = require('browser-sync')
+const bs = browserSync.create()
 
 // 原始的导入方法
 const sass = require('gulp-sass')

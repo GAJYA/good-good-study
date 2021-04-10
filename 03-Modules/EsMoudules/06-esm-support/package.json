@@ -1,0 +1,9 @@
+{
+  "name": "06-esm-support",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "lodash": "^4.17.21"
+  }
+}

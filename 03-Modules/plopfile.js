@@ -16,18 +16,18 @@ module.exports = plop => {
       actions: [
         {
           type: 'add', // 代表添加文件
-          path: '{{name}}/app.js',
-          templateFile: 'plop-templates/app.hbs'
+          path: 'EsMoudules/{{name}}/app.js',
+          templateFile: 'plop-templates/app.js'
         },
         {
           type: 'add', // 代表添加文件
-          path: '{{name}}/module.js',
-          templateFile: 'plop-templates/module.hbs'
+          path: 'EsMoudules/{{name}}/module.js',
+          templateFile: 'plop-templates/module.js'
         },
         {
           type: 'add', // 代表添加文件
-          path: '{{name}}/index.html',
-          templateFile: 'plop-templates/index.html.hbs'
+          path: 'EsMoudules/{{name}}/index.html',
+          templateFile: 'plop-templates/index.html'
         },
       ]
     })

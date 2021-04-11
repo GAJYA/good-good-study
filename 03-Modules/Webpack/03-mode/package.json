@@ -1,0 +1,13 @@
+{
+  "name": "03-mode",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack"
+  },
+  "devDependencies": {
+    "serve": "^11.3.2",
+    "webpack": "4.40.2",
+    "webpack-cli": "^4.6.0"
+  }
+}

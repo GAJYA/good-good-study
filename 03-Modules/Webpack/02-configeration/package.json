@@ -1,0 +1,15 @@
+{
+  "name": "02-configeration",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack"
+  },
+  "dependencies": {
+    "webpack": "^4.40.2"
+  },
+  "devDependencies": {
+    "webpack-cli": "^4.6.0"
+  }
+}

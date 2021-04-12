@@ -1,6 +1,10 @@
-body{
+@import url('./reset.css');
+
+body {
     background-color: #fff;
     font-size: 18px;
     color: #ccc;
     font-weight: 700;
+    background-image: url('./234.jpg');
+    background-size: cover;
 }

@@ -16,21 +16,22 @@ module.exports = {
                     'css-loader'
                 ]
             },
-            {
-                test: /\.jpg$/,
-                use: 'file-loader'
-            },
             // {
             //     test: /\.jpg$/,
-            //     use: [
-            //         {
-            //             loader: 'url-loader',
-            //             options: {
-            //                 limit: 10 * 1024
-            //             }
-            //         }
-            //     ]
+            //     use: 'file-loader'
             // },
+            {
+                test: /\.jpg$/,
+                // use: 'url-loader',
+                use: [
+                    {
+                        loader: 'url-loader',
+                        options: {
+                            limit: 10 * 1024 //限制大小10kb以下才使用url-loader否则使用file-loader，所以这种情况两个loader都需要安装
+                        }
+                    }
+                ]
+            },
         ]
     }
 }

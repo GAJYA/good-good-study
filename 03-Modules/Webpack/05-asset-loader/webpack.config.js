@@ -1,4 +1,9 @@
 const path = require('path')
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+
+
 module.exports = {
     mode: 'none',
     entry: './src/main.js',
@@ -71,5 +76,30 @@ module.exports = {
                 ]
             },
         ]
-    }
+    },
+    devServer: {
+        outputPath: path.join(__dirname, 'dist')
+    },
+    // 插件使用
+    plugins: [
+        // 删除目录
+        new CleanWebpackPlugin(),
+        // 自动生成html的插件，自动引入打包好的文件
+        new HtmlWebpackPlugin({
+            title: 'lunaJan',
+            meta: {
+                viewport: ''
+            },
+            template: './src/index.html' // 模板地址，模板中可以使用ejs语法
+        }),
+        // 多页面，重新new一个实例
+        new HtmlWebpackPlugin({
+            filename: 'about.html'
+        }),
+        // 直接把public下的文件复制进dist文件中
+        // new CopyWebpackPlugin([
+        //     'public/**/*'
+        // ])
+        new CopyWebpackPlugin({patterns:['public/**/*']}),
+    ]
 }

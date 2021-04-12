@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>avif-test</title>
+</head>
+<body>
+    <picture>
+        <source
+            sizes="(max-width: 608px) 100vw, 608px"
+            srcset="
+            ./img/test.avif 1920w,
+            ./img/test-1280.avif 1280w,
+            ./img/test.avif   640w,
+            ./img/test.avif   320w
+            "
+            type="image/avif"
+        />
+        <!-- snip lots of other stuff -->
+        <img />
+    </picture>
+    <img loading="lazy" src="./img/test-1280.avif"/>
+    <img
+    src="./img/test.avif"
+  style="
+      background-size: cover;
+      background-image: 
+        url('data:image/svg+xml;charset=utf-8,%3Csvg xmlns=\'http%3A//www.w3.org/2000/svg\'xmlns%3Axlink=\'http%3A//www.w3.org/1999/xlink\' viewBox=\'0 0 1280 853\'%3E%3Cfilter id=\'b\' color-interpolation-filters=\'sRGB\'%3E%3CfeGaussianBlur stdDeviation=\'.5\'%3E%3C/feGaussianBlur%3E%3CfeComponentTransfer%3E%3CfeFuncA type=\'discrete\' tableValues=\'1 1\'%3E%3C/feFuncA%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cimage filter=\'url(%23b)\' x=\'0\' y=\'0\' height=\'100%25\' width=\'100%25\'xlink%3Ahref=\'data%3Aimage/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAGCAIAAACepSOSAAAACXBIWXMAAC4jAAAuIwF4pT92AAAAs0lEQVQI1wGoAFf/AImSoJSer5yjs52ktp2luJuluKOpuJefsoCNowB+kKaOm66grL+krsCnsMGrt8m1u8mzt8OVoLIAhJqzjZ2tnLLLnLHJp7fNmpyjqbPCqLrRjqO7AIeUn5ultaWtt56msaSnroZyY4mBgLq7wY6TmwCRfk2Pf1uzm2WulV+xmV6rmGyQfFm3nWSBcEIAfm46jX1FkH5Djn5AmodGo49MopBLlIRBfG8yj/dfjF5frTUAAAAASUVORK5CYII=\'%3E%3C/image%3E%3C/svg%3E');
+    "
+/>
+
+    <img loading="lazy" src="./img/test-1280.avif"/>
+    <img loading="lazy" src="http://localhost:8080/static/img/userPant.fbeae30.png"/>
+    <img loading="lazy" src="./img/test-1280.avif"/>
+    <img loading="lazy" src="./img/test-1280.avif"/>
+    <img loading="lazy" src="./img/test-1280.avif"/>
+  <script type="module" src="app.js"></script>
+</body>
+</html>

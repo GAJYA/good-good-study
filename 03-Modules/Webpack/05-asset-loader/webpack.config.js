@@ -9,6 +9,18 @@ module.exports = {
     },
     module: {
         rules: [
+            // webpack只是用来打包工具
+            // 通过babel-loader来编译转换代码
+            {
+                test: /\.js$/,
+                // use:'babel-loader' // babel本身只是一个平台，完成编译需要借助于插件，@babel/preset-env是一个插件集合，可直接使用
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                }
+            },
             {
                 test: /\.css$/,
                 use: [

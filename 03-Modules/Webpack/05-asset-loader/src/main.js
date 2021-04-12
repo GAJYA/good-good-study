@@ -1,9 +1,12 @@
+import createHeading from './heading.js'
 import './main.css'
-import './123.jpg'
-import {name} from './module.js'
+import icon from './123.jpg'
 
-function sayhi(name) {
-    console.log(`hi, ${name}`);
-}
+const heading = createHeading()
 
-sayhi(name)
+document.body.append(heading)
+
+const img = new Image()
+img.src = icon
+
+document.body.append(img)

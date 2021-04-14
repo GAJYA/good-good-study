@@ -1,16 +1,7 @@
 const path = require('path')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
 const webpack = require('webpack')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-//  定义一个类型，返回一个apply方法
-class MyPlugin {
-    apply () {
-
-    }
-}
-
 module.exports = {
     mode: 'none', //development  production
     entry: './src/main.js',
@@ -19,30 +10,6 @@ module.exports = {
         path: path.join(__dirname, 'dist'),
         publicPath: 'dist/', //默认为空字符串表示根目录，dist后的/不可省略，否则会直接dist+资源路径，会找不到
     },
-    optimization: {
-        minimize: true,
-        sideEffects: true,
-    },
-    devServer: {
-        contentBase: './public', //指定为额外的资源加载路径，一般用于静态资源
-        outputPath: path.join(__dirname, 'dist'), 
-        // 希望在同域名下发送 API 请求 ，对某些URL进行代理 
-        proxy:{
-            '/api': {
-                target: 'https://api.github.com',
-                pathRewrite:{ //如果你不想始终传递 /api ，则需要重写路径
-                    '^/api': ' '
-                },
-                changeOrigin: true // changeOrigin默认是false：请求头中host仍然是浏览器发送过来的host,如果设置成true：发送请求头中host会设置成target
-            }
-        },
-        hot: true, //开启热更新，hot执行失败会回退进行自动刷新
-        // hotOnly: true, //开启热更新，执行失败时候不进行自动刷新
-    },
-    // source map映射方式，有12种，各有千秋，自行查阅，webpack官网.
-    // 开发环境推荐使用该模式，假如你代码不太长的话。因为报错只显示行号不显示列。
-    // 生产环境推荐none，因为source map会暴露源代码，视情况而定，比如我们这种开发。熬夜加班(/"≡ _ ≡)/~┴┴
-    devtool: 'eval-cheap-module-source-map', 
     module: {
         rules: [
             // webpack只是用来打包工具
@@ -60,7 +27,7 @@ module.exports = {
             {
                 test: /\.css$/,
                 use: [
-                    MiniCssExtractPlugin.loader,
+                    'style-loader',
                     'css-loader'
                 ]
             },
@@ -108,6 +75,26 @@ module.exports = {
             },
         ]
     },
+    devServer: {
+        contentBase: './public', //指定为额外的资源加载路径，一般用于静态资源
+        outputPath: path.join(__dirname, 'dist'), 
+        // 希望在同域名下发送 API 请求 ，对某些URL进行代理 
+        proxy:{
+            '/api': {
+                target: 'https://api.github.com',
+                pathRewrite:{ //如果你不想始终传递 /api ，则需要重写路径
+                    '^/api': ' '
+                },
+                changeOrigin: true // changeOrigin默认是false：请求头中host仍然是浏览器发送过来的host,如果设置成true：发送请求头中host会设置成target
+            }
+        },
+        hot: true, //开启热更新，hot执行失败会回退进行自动刷新
+        // hotOnly: true, //开启热更新，执行失败时候不进行自动刷新
+    },
+    // source map映射方式，有12种，各有千秋，自行查阅，webpack官网.
+    // 开发环境推荐使用该模式，假如你代码不太长的话。因为报错只显示行号不显示列。
+    // 生产环境推荐none，因为source map会暴露源代码，视情况而定，比如我们这种开发。熬夜加班(/"≡ _ ≡)/~┴┴
+    devtool: 'cheap-module-eval-source-map', 
     // 插件使用
     plugins: [
         // 删除目录
@@ -134,6 +121,5 @@ module.exports = {
         // css文件等由于style-loader和css-loader已经内部做了处理，可以直接进行热更新。因为css文件的处理有规则可循，简单！
         // js文件需要手动处理修改后进行热更新。需要使用模块热更新处理函数module.hot.accept()函数
         new webpack.HotModuleReplacementPlugin(), 
-        new MiniCssExtractPlugin(), // 把css文件提取到单独的文件中，以link的方式注入代码，就不需要style-loader了
     ]
 }

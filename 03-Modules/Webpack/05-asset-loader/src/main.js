@@ -4,6 +4,9 @@ import icon from './123.jpg'
 import footerHtml from './footer.html'
 import readme from '../readme.md'
 
+// 引入
+import {cube} from './math.js'
+
 console.log(readme);
 
 const heading = createHeading()

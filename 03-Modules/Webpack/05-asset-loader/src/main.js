@@ -1,9 +1,17 @@
+import createHeading from './heading.js'
 import './main.css'
-import './123.jpg'
-import {name} from './module.js'
+import icon from './123.jpg'
+import footerHtml from './footer.html'
+import readme from '../readme.md'
 
-function sayhi(name) {
-    console.log(`hi, ${name}`);
-}
+console.log(readme);
 
-sayhi(name)
+const heading = createHeading()
+
+document.body.append(heading)
+
+const img = new Image()
+img.src = icon
+
+document.body.append(img)
+document.write(footerHtml)

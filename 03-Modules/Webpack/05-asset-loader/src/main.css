@@ -1,6 +1,10 @@
-body{
-    background-color: aquamarine;
+@import url('./reset.css');
+
+body {
+    background-color: #fff;
     font-size: 18px;
-    color: brown;
+    color: #ccc;
     font-weight: 700;
+    background-image: url('./234.jpg');
+    background-size: cover;
 }

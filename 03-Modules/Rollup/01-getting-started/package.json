@@ -1,0 +1,13 @@
+{
+  "name": "01-getting-started",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+      "build": "rollup -config"
+  },
+  "devDependencies": {
+    "rollup": "^2.45.2",
+    "rollup-plugin-json": "^4.0.0"
+  }
+}

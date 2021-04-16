@@ -6,6 +6,7 @@
 
 import json from 'rollup-plugin-json'
 import nodeResolve from 'rollup-plugin-node-resolve'
+import commonjs from 'rollup-plugin-commonjs'
 
 export default {
     input: './index.js', // 必须，入口文件
@@ -17,6 +18,7 @@ export default {
     },
     plugins: [
         json(),
-        nodeResolve()
+        nodeResolve(),
+        commonjs()
     ]
 }

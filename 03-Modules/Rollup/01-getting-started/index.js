@@ -2,7 +2,10 @@ import {msg} from './src/message.js'
 
 import {sayhi, create, getversion} from './src/log.js'
 
+import _ from 'lodash-es'
 
+
+console.log(_.camelCase('HEAD'));
 
 sayhi(msg)
 

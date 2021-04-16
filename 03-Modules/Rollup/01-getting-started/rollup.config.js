@@ -5,6 +5,7 @@
 // 命令行选项将会覆盖配置文件中的选项
 
 import json from 'rollup-plugin-json'
+import nodeResolve from 'rollup-plugin-node-resolve'
 
 export default {
     input: './index.js', // 必须，入口文件
@@ -15,6 +16,7 @@ export default {
 
     },
     plugins: [
-        json()
+        json(),
+        nodeResolve()
     ]
 }

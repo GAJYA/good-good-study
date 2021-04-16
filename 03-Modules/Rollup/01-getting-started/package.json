@@ -4,10 +4,12 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-      "build": "rollup -config"
+    "build": "rollup -config"
   },
   "devDependencies": {
+    "lodash-es": "^4.17.21",
     "rollup": "^2.45.2",
-    "rollup-plugin-json": "^4.0.0"
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-node-resolve": "^5.2.0"
   }
 }

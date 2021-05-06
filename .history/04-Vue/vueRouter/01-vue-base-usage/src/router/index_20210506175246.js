@@ -1,5 +1,5 @@
 import Vue from "vue"
-import VueRouter from "../vue-router/index.js"
+import VueRouter from "../vue-router/"
 // import Index from "../views/Index.vue"
 import Layout from "../components/Layout.vue"
 

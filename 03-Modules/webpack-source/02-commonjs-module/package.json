@@ -1,0 +1,11 @@
+{
+  "name": "02-commonjs-module",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "html-webpack-plugin": "4.2.0",
+    "webpack": "4.40.2",
+    "webpack-cli": "3.3.10"
+  }
+}

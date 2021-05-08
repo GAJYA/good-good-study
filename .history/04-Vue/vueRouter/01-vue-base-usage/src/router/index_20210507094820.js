@@ -1,6 +1,6 @@
 import Vue from "vue"
-// import VueRouter from "../vue-router/Vue-Router.js"
-import VueRouter from "../vue-router/index.js"
+import VueRouter from "../vue-router/Vue-Router.js"
+// import VueRouter from "../vue-router/index.js"
 import Index from "../views/Index.vue"
 // import Layout from "../components/Layout.vue"
 
@@ -11,8 +11,7 @@ const routes = [
         path: '/', 
         name: 'Index',
         component: Index,
-        // 嵌套路由
-        // component: Layout,
+        component: Layout,
         // children: [
         //     { 
         //         path: '', 

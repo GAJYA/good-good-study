@@ -1,2 +1,0 @@
-(window["webpackJsonp"]=window["webpackJsonp"]||[]).push([["chunk-2d22d746"],{f820:function(t,n,e){"use strict";e.r(n);var u=function(){var t=this,n=t.$createElement,e=t._self._c||n;return e("div",[t._v(" 这是 About 页面 "),e("br"),e("router-link",{attrs:{to:"/"}},[t._v("首页")])],1)},r=[],o={name:"About"},l=o,a=e("2877"),c=Object(a["a"])(l,u,r,!1,null,null,null);n["default"]=c.exports}}]);
-//# sourceMappingURL=chunk-2d22d746.cc9bbec1.js.map

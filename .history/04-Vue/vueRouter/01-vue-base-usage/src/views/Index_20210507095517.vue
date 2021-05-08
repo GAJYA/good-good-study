@@ -1,6 +1,8 @@
 <template>
   <div>
       这是 Index 页面
+      |
+      <!-- <router-link to = "/footer">Footer</router-link> -->
   </div>
 </template>
 

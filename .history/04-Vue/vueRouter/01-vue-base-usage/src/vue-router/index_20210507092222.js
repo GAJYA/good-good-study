@@ -1,4 +1,4 @@
-let _Vue = null
+let _Vue = {}
 // - 创建 VueRouter 类
 export default class VueRouter {
     // - 创建 VueRouter 插件，静态方法 install

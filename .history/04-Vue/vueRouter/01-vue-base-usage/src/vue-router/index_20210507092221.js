@@ -1,4 +1,4 @@
-let _Vue = null
+let _Vue = {}
 // - 创建 VueRouter 类
 export default class VueRouter {
     // - 创建 VueRouter 插件，静态方法 install
@@ -28,7 +28,7 @@ export default class VueRouter {
         this.data = _Vue.observable({
             current: '/', //  当前默认路径
         })
-        this.init()
+        this.init
     }
     init() {
         this.initRouteMap()

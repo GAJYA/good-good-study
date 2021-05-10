@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue响应式原理</title>
+</head>
+<body>
+    <div id="app">
+        <h1 v-on:click="clickhandler">vue响应式原理</h1>
+        <h2>{{  msg}}</h2>
+        <h2>{{count }}</h2>
+        <h1>v-text</h1>
+        <h2 v-text="msg"></h2>
+        <h1>v-html</h1>
+        <h2 v-html="tag"></h2>
+        <h1>v-model</h1>
+        <label for="name">
+            msg:
+            <input id="name" v-model='msg' v-on:change="clickhandler" type="text"/>
+        </label>
+        <label for="num">
+            number:
+            <input id="num" v-model='count' type="text"/>
+        </label>
+    </div>
+
+    <script src="./js/dep.js"></script>
+    <script src="./js/watcher.js"></script>
+    <script src="./js/compiler.js"></script>
+    <script src="./js/observer.js"></script>
+    <script src="./js/vue.js"></script>
+</body>
+
+<script>
+    let vm = new Vue({
+        el: '#app',
+        data: {
+            msg: 'hello world',
+            count: 8,
+            person: { name: 'lunaJan' },
+            tag: '<h1>This is my preasure</h1>'
+        },
+        methods:{ 
+            clickhandler () {
+                console.log('click')
+            }
+        }
+    })
+    console.log(vm);
+</script>
+</html>

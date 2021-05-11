@@ -1,0 +1,13 @@
+{
+  "name": "01-snabbdom-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "parcel index.html --open",
+    "build": "parcel bui index.html --open",
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

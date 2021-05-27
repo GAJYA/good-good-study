@@ -134,7 +134,8 @@ export function _createElement (
       )
     }
   } else {
-    // 组件的情况
+      // 组件的情况
+
     // direct component options / constructor
     vnode = createComponent(tag, data, context, children)
   }

@@ -121,8 +121,6 @@ export function _createElement (
       // 判断是否是自定义组件
     } else if ((!data || !data.pre) && isDef(Ctor = resolveAsset(context.$options, 'components', tag))) {
       // component
-      // 查找自定义组件构造函数的声明
-      // 根据ctor创建组件的VNode
       vnode = createComponent(Ctor, data, context, children, tag)
     } else {
       // unknown or unlisted namespaced elements
@@ -134,7 +132,6 @@ export function _createElement (
       )
     }
   } else {
-    // 组件的情况
     // direct component options / constructor
     vnode = createComponent(tag, data, context, children)
   }

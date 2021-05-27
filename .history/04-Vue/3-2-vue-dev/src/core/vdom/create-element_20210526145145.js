@@ -128,13 +128,13 @@ export function _createElement (
       // unknown or unlisted namespaced elements
       // check at runtime because it may get assigned a namespace when its
       // parent normalizes children
+      // 组件的情况
       vnode = new VNode(
         tag, data, children,
         undefined, undefined, context
       )
     }
   } else {
-    // 组件的情况
     // direct component options / constructor
     vnode = createComponent(tag, data, context, children)
   }

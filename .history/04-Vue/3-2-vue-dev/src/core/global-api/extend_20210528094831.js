@@ -34,7 +34,6 @@ export function initExtend (Vue: GlobalAPI) {
     }
 
     const Sub = function VueComponent (options) {
-      // 调用_init()方法
       this._init(options)
     }
     Sub.prototype = Object.create(Super.prototype)
@@ -67,7 +66,6 @@ export function initExtend (Vue: GlobalAPI) {
       Sub[type] = Super[type]
     })
     // enable recursive self-lookup
-    // 把组件构造函数保存到Ctor.options.components.comp = Ctor
     if (name) {
       Sub.options.components[name] = Sub
     }
@@ -80,7 +78,6 @@ export function initExtend (Vue: GlobalAPI) {
     Sub.sealedOptions = extend({}, Sub.options)
 
     // cache constructor
-    // 把组件的构造函数缓存到options._Ctor
     cachedCtors[SuperId] = Sub
     return Sub
   }

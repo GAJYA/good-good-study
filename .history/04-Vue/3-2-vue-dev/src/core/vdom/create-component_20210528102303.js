@@ -190,8 +190,6 @@ export function createComponent (
   }
 
   // install component management hooks onto the placeholder node
-  // 安装组件的钩子函数  init/prepatch/insert/destroy
-  // 准备好了data.hook中的钩子函数
   installComponentHooks(data)
 
   // return a placeholder vnode
@@ -236,8 +234,6 @@ export function createComponentInstanceForVnode (
 
 function installComponentHooks (data: VNodeData) {
   const hooks = data.hook || (data.hook = {})
-  // 用户可以传递自定义的钩子函数
-  // 把用户传入的自定义钩子函数和componentVNodeHooks中预定义的钩子合并
   for (let i = 0; i < hooksToMerge.length; i++) {
     const key = hooksToMerge[i]
     const existing = hooks[key]

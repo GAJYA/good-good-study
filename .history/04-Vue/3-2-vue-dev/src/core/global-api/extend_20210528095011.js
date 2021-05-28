@@ -80,7 +80,7 @@ export function initExtend (Vue: GlobalAPI) {
     Sub.sealedOptions = extend({}, Sub.options)
 
     // cache constructor
-    // 把组件的构造函数缓存到options._Ctor
+    // 
     cachedCtors[SuperId] = Sub
     return Sub
   }

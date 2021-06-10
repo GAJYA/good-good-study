@@ -1,0 +1,2 @@
+const state = {}
+const getters = {}

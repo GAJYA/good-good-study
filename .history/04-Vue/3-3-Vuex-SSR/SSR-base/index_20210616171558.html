@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>传统的服务端渲染</title>
+</head>
+<body>
+  <h1>传统的服务端渲染</h1>
+  <h2>{{ title }}</h2>
+  <ul>
+      {{ each posts }}
+      <li>
+          <div>{{ $value.title }}</div>
+          <div>{{ $value.body }}</div>
+      </li>
+      {{ /each }}
+  </ul>
+</body>
+</html>

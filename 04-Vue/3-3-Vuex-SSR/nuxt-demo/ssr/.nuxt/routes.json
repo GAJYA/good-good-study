@@ -1,0 +1,16 @@
+[
+  {
+    "name": "about",
+    "path": "/about",
+    "component": "/Users/lunarjan/learn/code/good-good-study/04-Vue/3-3-Vuex-SSR/nuxt-demo/ssr/pages/about.vue",
+    "chunkName": "pages/about",
+    "_name": "_84461f0c"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/Users/lunarjan/learn/code/good-good-study/04-Vue/3-3-Vuex-SSR/nuxt-demo/ssr/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_44d66982"
+  }
+]

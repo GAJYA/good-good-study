@@ -1,0 +1,16 @@
+[
+  {
+    "name": "fun",
+    "path": "/fun",
+    "component": "D:\\\\GitProgram\\\\day-day-up\\\\04-Vue\\\\3-3-Vuex-SSR\\\\nust-my-app\\\\pages\\\\fun.vue",
+    "chunkName": "pages/fun",
+    "_name": "_78b26555"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "D:\\\\GitProgram\\\\day-day-up\\\\04-Vue\\\\3-3-Vuex-SSR\\\\nust-my-app\\\\pages\\\\index.vue",
+    "chunkName": "pages/index",
+    "_name": "_482be7a8"
+  }
+]

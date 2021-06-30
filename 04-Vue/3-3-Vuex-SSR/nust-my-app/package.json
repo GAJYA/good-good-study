@@ -1,0 +1,22 @@
+{
+  "name": "nust-my-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nuxt"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "nuxt": "^2.15.7"
+  },
+  "config": {
+      "nuxt": {
+          "host": "127.0.0.1",
+          "port": "3333"
+      }
+  }
+}

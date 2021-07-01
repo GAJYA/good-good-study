@@ -79,10 +79,10 @@ server.get(
         // 等待有了renderer渲染器以后，调用render进行渲染
         // 拿到构建的状态，构建成功后再渲染
         await onReady
-        render()
+        render(req, res)
       }
 )
 
 server.listen(3333, () => {
-  console.log('server running at port 3000')
+  console.log('server running at port 3333')
 })

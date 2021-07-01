@@ -143,5 +143,32 @@ renderToString方法第二个参数可以传入模板中需要的数据
    4. modules是针对原始模块做的依赖信息说明，每个模块都有一个特殊的标识，数组里存的是用到的所有的文件，编码表示
    5. 在开发模式下，vue会推断客户端生成的虚拟dom,是否与从服务器渲染的dom结构匹配，如果无法匹配，它会退出混合模式，丢弃现有的dom重新开始渲染，在生产模式下，此检测会被跳过，以避免性能损耗
 
+4. 使用webpack-dev-middleware
+
+5. 使用webpack-hot-middleware热更新
+
+   1. 在开发环境设置某些内容
+   2. 可能会报错，原因是chunkhash
+   3. 在热更新模式下不要使用hash，确保一致的文件名
+   4. 关闭日志 配置noInfo或者quiet为true
+   5. 重新启动配置reload =  true
+
+6. 安装vue-router
+
+   1. 创建pages文件放组件，包括home。about。404页面
+   2. 创建router —— index.js
+   3. Vue.use(VueRouter)
+   4. 导出一个createRouter = （） =》 {} ，使用函数目的是避免不同路由状态的交叉污染
+   5. new Vuerouter()
+   6. mode在同构中必须使用history模式，可以兼容后端
+   7. 配置routes中配置home，about和404页面，通常404放最后，以*号匹配
+   8. 把路由注册到跟实例中，app.js中拿到createRouter
+   9. 把路由挂载到vue根实例中，把router和app一并导出，这样外部就可以拿到
+   10. 把vuerouter适配到entry-server中，可参考官方文档
+   11. async默认返回promise，可以把return new Promise去掉
+   12.  server.js中的rendertoString的第一个参数对象就是router.context拿到的内容
+   13. 服务端路由设置为*，server.get(`"*"`) 任何请求都会走到哪里
+   14. 客户端也需要做一个适配，entry-client
+
 
 

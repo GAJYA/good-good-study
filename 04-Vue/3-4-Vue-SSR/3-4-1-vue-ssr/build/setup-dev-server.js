@@ -43,20 +43,32 @@ module.exports = (server, callback) => {
        serverBundle = JSON.parse(serverDevMiddleware.fileSystem.readFileSync(resolve('../dist/vue-ssr-server-bundle.json'), 'utf-8'))
         update()
     })
-    // serverCompiler.watch({}, (err, stats) => {
-    //     // 抛出webpack本身的一些错误，如配置错误
-    //     if (err) throw err
-    //     // 代码中有错误
-    //     if(stats.hasErrors()) return
-    //     console.log('success');
-    //     // 不要使用require导入json文件，因为require有缓存，直接读取文件读出来
-    //     serverBundle = JSON.parse(fs.readFileSync(resolve('../dist/vue-ssr-server-bundle.json'), 'utf-8'))
-    //     // console.log(serverBundle);
-    //     update()
-    // })
+    /** serverCompiler.watch({}, (err, stats) => {
+         // 抛出webpack本身的一些错误，如配置错误
+         if (err) throw err
+         // 代码中有错误
+         if(stats.hasErrors()) return
+         console.log('success');
+         // 不要使用require导入json文件，因为require有缓存，直接读取文件读出来
+         serverBundle = JSON.parse(fs.readFileSync(resolve('../dist/vue-ssr-server-bundle.json'), 'utf-8'))
+         // console.log(serverBundle);
+         update()
+     }) */
     // 监视构建clientManifest ——> 调用update ——> 更新renderer渲染器
     // webpack在打包构建中默认把构建结果存储在磁盘中，开发模式频繁修改代码触发构建，会频繁的去磁盘中存取数据，这个操作相对较慢，建议开发环境可以存入内存中
     // 推荐使用memfs第三方工具，配置在webpack中，打包后会输出在内存中
     // 或者官方的webpack-dev-middleware
+    const clientConfig = require('./webpack.client.config')
+    const clientCompiler = webpack(clientConfig)
+    const clientDevMiddleware = devMiddleware(clientCompiler, {
+        // logLevel: 'silent', // 关闭日志输出，由friedlyErrorsWebpackPlugin处理
+    })
+    // 相当于注册了个插件
+    clientCompiler.hooks.done.tap('client', () => {
+       clientMinifest = JSON.parse(clientDevMiddleware.fileSystem.readFileSync(resolve('../dist/vue-ssr-client-manifest.json'), 'utf-8'))
+        update()
+    })
+    // 将clientMiddleware挂载到express服务中，提供对其内部内存中数据的访问
+    server.use(clientDevMiddleware)
     return onReady
 }

@@ -4,9 +4,10 @@ const chokidar = require('chokidar')
 const webpack = require('webpack')
 const resolve = file => path.resolve(__dirname, file)
 const devMiddleware = require('webpack-dev-middleware')
+const hotMiddleware = require('webpack-hot-middleware')
 module.exports = (server, callback) => {
     let ready //promise中的reslove
-    const onReady = new Promise(reslove => ready = reslove)
+    const onReady = new Promise(res => ready = res)
 
     // 监视构建 --》 更新renderer
     // 定义三个变量
@@ -18,25 +19,26 @@ module.exports = (server, callback) => {
     const update = () => {
         if (template && serverBundle && clientManifest) {
             ready()
-            callback(template, serverBundle, clientManifest)
+            callback(serverBundle,template, clientManifest)
         }
     }
     // 调用update的时机
     // 监视构建template ——> 调用update ——> 更新renderer渲染器
     // 初始时候把文件读取出来，发生变化时候再读出来
-    const templatePath = path.resolve(__dirname,'../index-template.html')
-    template = fs.readFileSync(templatePath, 'utf8')
+    const templatePath = path.resolve(__dirname,'../index.template.html')
+    template = fs.readFileSync(templatePath, 'utf-8')
+    update()
     // 实现监视功能  推荐使用 chokidar第三方包实现，因为原生的fs.watch  fs.watchFile不太好用
     chokidar.watch(templatePath).on('change', () => {
         console.log('template change');
-        template = fs.readFileSync(templatePath, 'utf8')
+        template = fs.readFileSync(templatePath, 'utf-8')
         update()
     })
     // 监视构建serverBundle ——> 调用update ——> 更新renderer渲染器
     const serverConfig = require('./webpack.server.config')
     const serverCompiler = webpack(serverConfig)
     const serverDevMiddleware = devMiddleware(serverCompiler, {
-        // logLevel: 'silent', // 关闭日志输出，由friedlyErrorsWebpackPlugin处理
+        logLevel: 'silent', // 关闭日志输出，由friedlyErrorsWebpackPlugin处理
     })
     // 相当于注册了个插件
     serverCompiler.hooks.done.tap('server', () => {
@@ -61,13 +63,17 @@ module.exports = (server, callback) => {
     const clientConfig = require('./webpack.client.config')
     const clientCompiler = webpack(clientConfig)
     const clientDevMiddleware = devMiddleware(clientCompiler, {
-        // logLevel: 'silent', // 关闭日志输出，由friedlyErrorsWebpackPlugin处理
+        publicPath: clientConfig.output.publicPath,
+        logLevel: 'silent', // 关闭日志输出，由friedlyErrorsWebpackPlugin处理
     })
     // 相当于注册了个插件
     clientCompiler.hooks.done.tap('client', () => {
-       clientMinifest = JSON.parse(clientDevMiddleware.fileSystem.readFileSync(resolve('../dist/vue-ssr-client-manifest.json'), 'utf-8'))
+        clientManifest = JSON.parse(clientDevMiddleware.fileSystem.readFileSync(resolve('../dist/vue-ssr-client-manifest.json'), 'utf-8'))
         update()
     })
+    server.use(hotMiddleware(clientCompiler, {
+        log: false // 关闭它本身的日志输出
+    }))
     // 将clientMiddleware挂载到express服务中，提供对其内部内存中数据的访问
     server.use(clientDevMiddleware)
     return onReady

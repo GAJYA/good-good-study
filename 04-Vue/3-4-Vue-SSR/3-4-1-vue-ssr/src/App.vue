@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-      <h1>客户端交互currentFlushTimestamp</h1>
+      <h1>客户端交互FlushTimestamp</h1>
     <h1>{{ message }}</h1>
     <input type="text" v-model="message">
     <hr>

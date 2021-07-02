@@ -6,23 +6,29 @@ const setupDevServer = require('./build/setup-dev-server')
 // const serverBundle = require('./dist/vue-ssr-server-bundle.json')
 // const clientManifest = require('./dist/vue-ssr-client-manifest.json')
 // const renderer = require('vue-server-renderer').createBundleRenderer(serverBundle, {
-//     template: fs.readFileSync('index-template.html', 'utf8'),
+//     template: fs.readFileSync('index.template.html', 'utf-8'),
 //     clientManifest
 // })
 const server = express()
+
+// 挂载一个处理资源的中间件
+// 当请求到以/dist开头的资源时候尝试去dist目录下查找
+server.use('/dist', express.static('./dist'))
 
 let renderer
 let onReady
 const isProd = process.env.NODE_ENV === 'production'
 if (isProd) {
+    console.log('aaaaaaaaaaa');
   const serverBundle = require('./dist/vue-ssr-server-bundle.json')
-  const template = fs.readFileSync('index-template.html', 'utf8')
+  const template = fs.readFileSync('./index.template.html', 'utf-8')
   const clientManifest = require('./dist/vue-ssr-client-manifest.json')
   renderer = createBundleRenderer(serverBundle, {
     template,
     clientManifest
   })
 } else {
+    console.log('bbbbbbbbbb');
   // 开发模式   监视源代码的改动，然后进行打包构建，重新生成renderer渲染器
   // 参数2是一个回调函数，回调函数在每次监视打包完成后都会被执行
   onReady = setupDevServer(server, (serverBundle, template, clientManifest) => {
@@ -33,7 +39,7 @@ if (isProd) {
   })
 }
 // const renderer = require('vue-server-renderer').createRenderer({
-//     template: fs.readFileSync('index-template.html', 'utf8')
+//     template: fs.readFileSync('index.template.html', 'utf-8')
 // })
 
 const render = (req, res) => {
@@ -68,9 +74,7 @@ const render = (req, res) => {
     }
   )
 }
-// 挂载一个处理资源的中间件
-// 当请求到以/dist开头的资源时候尝试去dist目录下查找
-server.use('/dist', express.static('./dist'))
+
 server.get(
   '/',
   isProd

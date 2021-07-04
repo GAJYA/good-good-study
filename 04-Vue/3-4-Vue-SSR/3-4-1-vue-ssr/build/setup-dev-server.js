@@ -61,6 +61,12 @@ module.exports = (server, callback) => {
     // 推荐使用memfs第三方工具，配置在webpack中，打包后会输出在内存中
     // 或者官方的webpack-dev-middleware
     const clientConfig = require('./webpack.client.config')
+    clientConfig.plugins.push(new webpack.HotModuleReplacementPlugin())
+    clientConfig.entry = [
+        'webpack-hot-middleware/client?quiet=true&reload=true', 
+        clientConfig.entry.app
+    ]
+    clientConfig.output.filename = '[name].js' // 热更新模式下不开启哈希
     const clientCompiler = webpack(clientConfig)
     const clientDevMiddleware = devMiddleware(clientCompiler, {
         publicPath: clientConfig.output.publicPath,

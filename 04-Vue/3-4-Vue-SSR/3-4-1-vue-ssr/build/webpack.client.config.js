@@ -1,3 +1,11 @@
+/*
+ * @Author: your name
+ * @Date: 2021-07-04 16:21:06
+ * @LastEditTime: 2021-07-04 16:54:09
+ * @LastEditors: your name
+ * @Description: In User Settings Edit
+ * @FilePath: /3-4-1-vue-ssr/build/webpack.client.config.js
+ */
 /**
  * 客户端打包配置
  */

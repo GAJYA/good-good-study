@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import { createRouter } from './router'
 import VueMeta from 'vue-meta'
+import { createStore } from './store'
 
 Vue.use(VueMeta)
 
@@ -18,11 +19,13 @@ Vue.mixin({
 export function createApp() {
     // 创建 router 实例
   const router = createRouter()
+  const store = createStore()
   const app = new Vue({
       router, // 把路由挂载到根实例上
+      store, 
     // 根实例简单的渲染应用程序组件。
     render: (h) => h(App),
   })
   //   放在对象中是为了将来返回路由，store等数据
-  return { app, router }
+  return { app, router, store }
 }

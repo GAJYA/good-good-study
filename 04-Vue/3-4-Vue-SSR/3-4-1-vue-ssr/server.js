@@ -62,7 +62,7 @@ const render = async (req, res) => {
       meta: `<meta name="viewport" content='whataaa'>`,
       url: req.url
     })
-    console.log(html) // <div id="app" data-server-rendered="true"><h1>hello world</h1></div>
+    // console.log(html) // <div id="app" data-server-rendered="true"><h1>hello world</h1></div>
     // 模板根节点添加的自定义数据data-server-rendered，目的是在做客户端渲染激活接管的一个入口
     // 使用express
     res.setHeader('Content-Type', 'text/html; charset=utf-8')

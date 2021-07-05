@@ -168,7 +168,12 @@ renderToString方法第二个参数可以传入模板中需要的数据
    11. async默认返回promise，可以把return new Promise去掉
    12.  server.js中的rendertoString的第一个参数对象就是router.context拿到的内容
    13. 服务端路由设置为*，server.get(`"*"`) 任何请求都会走到哪里
-   14. 客户端也需要做一个适配，entry-client
+   14. 客户端也需要做一个适配，entry-client  参考官方文档
+   
+7. 预加载只是下载代码，但是不会执行代码
+
+   1. preload 当前页面一定会用到的
+   2. prefetch 加载的是下一页可能用到的资源，只会在空闲时间才会加载，不关心是否加载成功
 
 
 

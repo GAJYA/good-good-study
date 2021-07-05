@@ -1,10 +1,16 @@
 <template>
   <div id="app">
-      <h1>客户端交互</h1>
-    <h1>{{ message }}</h1>
-    <input type="text" v-model="message">
-    <hr>
-    <button @click="onclick">点击按钮</button>
+      <ul>
+          <li>
+              <router-link to="/">Home</router-link>
+          </li>
+          <li>
+              <router-link to="/about">About</router-link>
+          </li>
+      </ul>
+
+      <!-- 路由出口 -->
+      <router-view/>
   </div>
 </template>
 

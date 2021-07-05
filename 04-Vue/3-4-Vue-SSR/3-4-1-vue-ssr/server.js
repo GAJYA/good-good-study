@@ -19,7 +19,7 @@ let renderer
 let onReady
 const isProd = process.env.NODE_ENV === 'production'
 if (isProd) {
-    console.log('aaaaaaaaaaa');
+  console.log('aaaaaaaaaaa')
   const serverBundle = require('./dist/vue-ssr-server-bundle.json')
   const template = fs.readFileSync('./index.template.html', 'utf-8')
   const clientManifest = require('./dist/vue-ssr-client-manifest.json')
@@ -28,7 +28,7 @@ if (isProd) {
     clientManifest
   })
 } else {
-    console.log('bbbbbbbbbb');
+  console.log('bbbbbbbbbb')
   // 开发模式   监视源代码的改动，然后进行打包构建，重新生成renderer渲染器
   // 参数2是一个回调函数，回调函数在每次监视打包完成后都会被执行
   onReady = setupDevServer(server, (serverBundle, template, clientManifest) => {
@@ -42,7 +42,7 @@ if (isProd) {
 //     template: fs.readFileSync('index.template.html', 'utf-8')
 // })
 
-const render = (req, res) => {
+const render = async (req, res) => {
   //   const app = new Vue({
   //     template: `
   //             <div id="app">
@@ -56,27 +56,25 @@ const render = (req, res) => {
 
   //   不需要单独创建实例，renderer会自动找到entry-server然后自动触发创建实例
   //   renderer.renderToString(app, {
-  renderer.renderToString(
-    {
+  try {
+    const html = await renderer.renderToString({
       title: 'whataaa',
-      meta: `<meta name="viewport" content='whataaa'>`
-    },
-    (err, html) => {
-      // if (err) throw err
-      if (err) {
-        return res.status(500).end('Internal Server Error')
-      }
-      console.log(html) // <div id="app" data-server-rendered="true"><h1>hello world</h1></div>
-      // 模板根节点添加的自定义数据data-server-rendered，目的是在做客户端渲染激活接管的一个入口
-      // 使用express
-      res.setHeader('Content-Type', 'text/html; charset=utf-8')
-      res.end(html)
-    }
-  )
+      meta: `<meta name="viewport" content='whataaa'>`,
+      url: req.url
+    })
+    console.log(html) // <div id="app" data-server-rendered="true"><h1>hello world</h1></div>
+    // 模板根节点添加的自定义数据data-server-rendered，目的是在做客户端渲染激活接管的一个入口
+    // 使用express
+    res.setHeader('Content-Type', 'text/html; charset=utf-8')
+    res.end(html)
+  } catch (error) {
+    res.status(500).end('Internal Server Error')
+  }
 }
 
+// 服务端路由设置为*，意味着所有的路由都会进入这里
 server.get(
-  '/',
+  '*',
   isProd
     ? render
     : async (req, res) => {

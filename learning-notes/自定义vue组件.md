@@ -210,7 +210,9 @@ export const Login = () => ({
 
    吐槽：为什么会装成3.x呢，因为高版本vue-loader中安装的url-loader啊file-loader啊，tmd安装的是3.0的呢，呕~给爷整吐了
 
-yarn 的工作区
+### yarn 的工作区
+
+管理包的依赖
 
 1. 在根目录的package.json中设置
 
@@ -226,3 +228,128 @@ yarn 的工作区
    ```
 
 3. 直接执行`yarn `,会把相同的依赖提升到根目录下，特有的包会单独下载到自己的组件包下
+
+### Lena使用介绍
+
+1. 全局安装
+
+   ```bash
+   yarn global add lerna
+   ```
+
+2. 初始化
+
+   ```bash
+   lerna init
+   ```
+
+   * 当前项目没有Git会先Git初始化
+   * 项目根目录添加lerna.json配置文件，里面有版本信息等
+   * 在package.json中添加lerna的开发依赖
+
+3. 发布（在package.json中添加script 直接执行 yarn lerna）
+
+   ```bash
+   lerna publish
+   ```
+
+4. 登录npm账号 发布
+
+   1. npm whoami
+   2. npm config get registry 获取镜像源
+   3. 执行 yarn lerna 发布到npm上
+
+   执行完毕后可能会报错没有权限发布包，可能是因为npm中有同名的包，修改package.json的name，提交git，再次执行发布
+
+
+
+### Vue组件的单元测试
+
+#### 安装依赖
+
+* Vue Test Utils
+* Jest 单元测试框架
+* vue-jest 为jest提供的预处理器
+* babel-jest 对测试代码进行降级处理
+
+安装 -W在工作区
+
+```bash
+yarn add jest @vue/test-utils vue-jest babel-jest -D -W
+```
+
+#### 配置测试脚本
+
+package.json
+
+```json
+"script": {
+    "test": "jest"
+}
+```
+
+jest.config.js项目根目录
+
+```js
+module.exports = {
+    "testMatch": [], // 运行时候去哪儿找测试文件，默认找__test__文件中
+    "moduleFileExtensions": [], //配置的文件后缀
+    "transform" //转换
+}
+```
+
+babel.config.js // 运行可能提示使用找不到babel，因为storybook的版本是7+，jest需要6版本，可以通过安装brige桥接解决
+
+```js
+presets: [
+    [
+        '@babel/preset-env'
+    ]
+]
+```
+
+#### Jest常用API
+
+![image-20210715152304138](C:\Users\luoli\AppData\Roaming\Typora\typora-user-images\image-20210715152304138.png)
+
+#### Vue Test Utils 常用API
+
+![image-20210715152240285](C:\Users\luoli\AppData\Roaming\Typora\typora-user-images\image-20210715152240285.png)
+
+组件测试
+
+1. 测试输出的结果是否OK
+2. 测试组件状态是否OK
+3. 快照
+
+
+
+### rollup打包
+
+#### 安装依赖
+
+rollup
+
+rollup-plugin-terser 压缩
+
+rollup-plugin-vue@5.1.9把vue2组件转换成js，最新版本是转换的vue3
+
+vue-template-compiler
+
+ package.json配置script 执行 rollup -c
+
+
+
+### 其他
+
+1. 删除文件夹插件 rimraf
+2. 配置环境变量cross-env
+
+
+
+### 使用plop
+
+1. 安装
+2. 写模板
+3. 写配置文件
+4. 执行命令

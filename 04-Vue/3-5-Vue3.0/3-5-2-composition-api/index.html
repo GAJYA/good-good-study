@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        x: {{position.x}}
+        y: {{position.y}}
+    </div>
+    <script type="module">
+        // 创建一个vue对象，返回一个对象
+        import { createApp } from './node_modules/vue/dist/vue.esm-browser.js'
+
+        const app = createApp({
+            setup () {
+                // 响应式对象，不能被解构
+            },
+            // data不支持对象的写法，只支持函数
+            // data () {
+            //     return {
+            //         position: {
+            //             x: 0,
+            //             y: 0
+            //         }
+            //     },
+            // }
+        })
+
+        app.mount('#app')
+        console.log(app);
+    </script>
+</body>
+
+</html>
